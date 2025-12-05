@@ -11,14 +11,14 @@
     <style>
         /* Variáveis de Cores */
         :root {
-            --primary-color: #551D9B; /* Roxo Profundo (Cor Principal) */
-            --secondary-color: #2ED06F; /* Verde Neon/Ação (Destaque) */
-            --accent-color: #00A9FF; /* Azul Elétrico (Destaque Secundário) */
-            --warning-color: #f39c12; /* Amarelo/Laranja para Aviso */
-            --background-color: #0d0d21; /* Fundo Muito Escuro */
-            --card-bg: #1a1a38; /* Fundo dos Cards/Seções */
-            --header-bg: #15152a; /* Fundo do Cabeçalho */
-            --text-color: #f8f8f8; /* Texto Claro */
+            --primary-color: #551D9B; 
+            --secondary-color: #2ED06F; 
+            --accent-color: #00A9FF; 
+            --warning-color: #f39c12; 
+            --background-color: #0d0d21; 
+            --card-bg: #1a1a38; 
+            --header-bg: #15152a; 
+            --text-color: #f8f8f8; 
             --shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
         }
 
@@ -26,7 +26,7 @@
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box; /* Essencial para layout estável */
         }
 
         body {
@@ -114,6 +114,12 @@
         .logo img {
             max-height: 30px;
             width: auto;
+            vertical-align: middle; /* Ajuda no alinhamento */
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
         }
 
         .nav a, .nav button {
@@ -128,33 +134,30 @@
             color: var(--secondary-color);
         }
         
-        /* Oculta seção de produtos removida */
-        .shop-section {
-            display: none !important;
-        }
-
-        /* Hero Section */
+        /* Seções da Landing Page */
+        .shop-section { display: none !important; }
         .hero-section {
             padding: 100px 0 80px 0;
             text-align: center;
             background: radial-gradient(circle at top, #15152a 0%, var(--background-color) 70%);
         }
-
-        .hero-section h1 {
-            font-size: 4em;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 20px;
+        .hero-section h1 { font-size: 4em; font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+        .hero-section h1 span { color: var(--secondary-color); text-shadow: 0 0 10px rgba(46, 208, 111, 0.7); }
+        .stats-section {
+            background-color: var(--header-bg);
+            padding: 40px 0;
+            border-top: 2px solid var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
         }
-        
-        .hero-section h1 span {
-            color: var(--secondary-color);
-            text-shadow: 0 0 10px rgba(46, 208, 111, 0.7);
-        }
-        /* Conteúdo das outras seções (Stats, How-It-Works, etc.) é mantido */
+        .stats-grid { display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap; }
+        .content-section { padding: 80px 0; text-align: center; }
+        .how-it-works-grid, .integrations-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
+        .footer { background-color: var(--header-bg); color: #aaa; padding: 50px 0 20px 0; border-top: 2px solid var(--primary-color); }
+        .footer .container { display: flex; justify-content: space-between; flex-wrap: wrap; text-align: left; }
+        .footer-col { width: 22%; min-width: 150px; margin-bottom: 30px; }
         
         /* ======================================
-        MODAIS (Geral) - CORREÇÃO DE POSICIONAMENTO
+        MODAIS (Geral)
         ====================================== */
         .modal {
             display: none; 
@@ -164,14 +167,17 @@
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
+            /* MODIFICADO: Usando flexbox para centralizar o conteúdo verticalmente */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto; /* Permite scroll se o conteúdo for muito grande */
             background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px; /* Adiciona padding para evitar que o modal toque as bordas em mobile */
         }
 
         .modal-content {
             background-color: #2a2a2a; 
-            /* MODIFICADO: Ajustado para centralização mais estável */
-            margin: 5% auto; 
             padding: 30px 40px;
             border-radius: 15px;
             width: 95%; 
@@ -179,20 +185,20 @@
             position: relative;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
             color: var(--text-color);
+            /* MODIFICADO: Garantir que o conteúdo não seja esmagado */
+            flex-shrink: 0;
         }
 
+        /* Modal de Login */
         .login-content {
-            /* MANTIDO, mas ajustado para garantir que não quebre em telas menores */
             max-width: 400px;
-            margin: 15% auto; 
             text-align: center;
         }
         
         /* ======================================
-        MODAL DE CHECKOUT (CORREÇÃO DE FORMULÁRIO)
+        MODAL DE CHECKOUT (Correções de Formulário)
         ====================================== */
         
-        /* CORRIGIDO: Adicionando flexbox para o formulário de checkout */
         #address-form {
             display: flex;
             flex-direction: column;
@@ -200,17 +206,16 @@
         }
 
         #address-form input, #address-form select {
-            width: 100%; /* Garante que o input preencha o container */
+            width: 100%; 
             padding: 12px;
             border-radius: 6px;
             font-size: 1em;
             background-color: #1c1c1c;
             border: 1px solid #444;
             color: var(--text-color);
-            transition: border-color 0.3s;
         }
         
-        /* CORRIGIDO: Estilos para as colunas do formulário */
+        /* CORREÇÃO CRUCIAL: Estilos para as colunas do formulário */
         .form-row {
             display: flex;
             gap: 15px;
@@ -218,26 +223,58 @@
         }
 
         .form-row .col-half, .form-row .col-full {
-            flex: 1; /* Garante que as colunas ocupem espaço igual */
+            flex: 1; 
             display: flex;
             flex-direction: column;
         }
+        
+        /* CORREÇÃO: Removendo margin-bottom extra dos inputs dentro das colunas */
+        .form-row .col-half input, 
+        .form-row .col-full input {
+            margin-bottom: 0; 
+        }
 
-        /* Responsividade - CORREÇÃO PARA BREAKPOINT */
+        /* Estilos do Checkout Sumário */
+        .checkout-summary {
+            background-color: #333; 
+            border-left: 5px solid var(--primary-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .checkout-summary .price {
+            color: var(--secondary-color);
+            font-size: 1.8em;
+            font-weight: 900;
+        }
+
+        /* Responsividade */
         @media (max-width: 768px) {
             .hero-section h1 {
                 font-size: 3em;
             }
-            .hero-section p {
-                font-size: 1.1em;
+            .nav {
+                /* Empilha logo e navegação ou simplifica */
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
             }
-            /* CORRIGIDO: Faz as colunas do formulário empilharem em telas pequenas */
+            .header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .nav a, .nav button {
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            /* CORREÇÃO: Faz as colunas do formulário empilharem em telas pequenas */
             .form-row {
                 flex-direction: column;
-                gap: 15px; /* Adiciona espaçamento entre os campos empilhados */
-            }
-            .login-content { 
-                margin: 10% auto; 
+                gap: 15px; 
             }
             
              /* Ajuste para o checkout-summary em telas menores */
@@ -247,26 +284,22 @@
                 gap: 10px;
             }
             .checkout-summary .price {
-                align-self: flex-end; /* Coloca o preço na direita se empilhar */
+                align-self: flex-start; 
             }
         }
         
-        /* O restante dos estilos (PIX Modal, Footer, etc.) é mantido do código anterior para consistência de design. */
-        
-        .checkout-header { border-bottom: 3px solid var(--secondary-color); }
-        .checkout-summary { border-left: 5px solid var(--primary-color); }
-        .checkout-summary .price { color: var(--secondary-color); }
-        #address-form input:focus { border-color: var(--secondary-color); }
-        .checkout-message { background-color: rgba(243, 156, 18, 0.15); border: 1px solid var(--warning-color); color: var(--text-color); }
-        .checkout-message i { color: var(--warning-color); }
-        .checkout-message strong { color: var(--warning-color); }
-        .payment-option-pix { color: var(--secondary-color); }
-        .btn-pay-now { background-color: var(--secondary-color); animation: pulse-neon 2s infinite; }
+        /* Estilos menores mantidos para não quebrar o visual */
+        .close-btn { color: #aaa; float: right; font-size: 32px; font-weight: bold; transition: color 0.3s; }
+        .close-btn:hover, .close-btn:focus { color: var(--secondary-color); text-decoration: none; cursor: pointer; }
+        .checkout-message { background-color: rgba(243, 156, 18, 0.15); border: 1px solid var(--warning-color); padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; }
+        .checkout-message strong { color: var(--warning-color); font-weight: 800; }
+        .payment-option-pix { background-color: #3c3c3c; border: 1px solid #555; color: var(--secondary-color); padding: 15px; border-radius: 8px; text-align: center; font-size: 1.2em; font-weight: 700; margin-top: 10px; }
+        .btn-pay-now { background-color: var(--secondary-color); animation: pulse-neon 2s infinite; width: 100%; margin-top: 20px; }
         .pix-modal-content h3 { color: var(--secondary-color); }
         .pix-details { border: 2px solid var(--secondary-color); }
         .pix-key-group span { color: var(--secondary-color); }
         #close-pix-btn { background-color: var(--primary-color) !important; }
-        .pending-message { color: var(--warning-color); }
+        .pending-message { background-color: #333; color: var(--warning-color); border: 1px solid var(--warning-color); padding: 15px; border-radius: 5px; margin-bottom: 20px; font-weight: 600; display: none; }
     </style>
 </head>
 <body>
@@ -558,29 +591,30 @@
                 }
             };
             
+            // Função para abrir um modal de forma segura
+            const openModal = (modalElement) => {
+                closeModals();
+                modalElement.style.display = 'flex'; // MODIFICADO: Usa flex para centralizar
+                document.body.style.overflow = 'hidden';
+            };
+            
             // Abre Checkout (do Hero CTA)
             openCheckoutCta.addEventListener('click', function(event) {
                 event.preventDefault();
-                closeModals(); 
-                addressModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
+                openModal(addressModal);
             });
             
             // Abre Login (do Header)
             openLoginBtn.addEventListener('click', function(event) {
                 event.preventDefault();
-                closeModals(); 
-                loginModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
+                openModal(loginModal);
                 loginErrorMsg.style.display = 'none'; 
             });
             
             // Abre Checkout (do Link de erro de Login)
             openCheckoutLink.addEventListener('click', function(event) {
                 event.preventDefault();
-                closeModals();
-                addressModal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
+                openModal(addressModal);
             });
 
 
@@ -589,6 +623,7 @@
             closePixBtn.addEventListener('click', closeModals);
 
             window.addEventListener('click', function(event) {
+                // Checa se o clique foi no background do modal
                 if (event.target === loginModal || event.target === addressModal || event.target === pixModal) {
                     closeModals();
                 }
@@ -599,8 +634,6 @@
             // ===========================================
             loginForm.addEventListener('submit', function(event) {
                 event.preventDefault();
-                
-                // Simula erro de pagamento não realizado
                 loginErrorMsg.style.display = 'block';
             });
 
@@ -675,9 +708,8 @@
                 pixValueDisplay.textContent = formatPrice(currentProduct.price);
 
                 addressModal.style.display = 'none';
-                pixModal.style.display = 'block';
+                openModal(pixModal);
                 pendingMessage.style.display = 'none'; 
-                document.body.style.overflow = 'hidden';
                 
                 startCountdown(10 * 60); // 10 minutos
             });
