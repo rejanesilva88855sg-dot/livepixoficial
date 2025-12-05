@@ -3,26 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PSN Cards | Loja Virtual de Gift Cards - PIX Checkout</title>
-    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/0/00/PlayStation_logo.svg">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Sua Plataforma para Streamers | Monetize. Engaje. Cresça.</title>
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/e/e0/LivePix_Logo.png"> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght=400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Variáveis de Cores (Ajustadas para o tema PSN) */
+        /* Variáveis de Cores (Ajustadas para um tema de plataforma de streamer - Escuro/Neon/Ação) */
         :root {
-            --primary-color: #0070D1; /* Azul PlayStation */
-            --secondary-color: #FF3300; /* Laranja/Vermelho Destacado */
-            --accent-color: #27ae60; /* Verde para PIX/Sucesso */
-            --warning-color: #f39c12; /* Amarelo para Pendente */
-            --background-color: #121212; /* Fundo Escuro */
-            --card-bg: #1c1c1c; /* Fundo dos Cards */
-            --header-bg: #1a1a2e; /* NOVO: Azul Escuro para o cabeçalho */
+            --primary-color: #551D9B; /* Roxo Profundo (Cor Principal) */
+            --secondary-color: #2ED06F; /* Verde Neon/Ação (Destaque) */
+            --accent-color: #00A9FF; /* Azul Elétrico (Destaque Secundário) */
+            --warning-color: #f39c12; 
+            --background-color: #0d0d21; /* Fundo Muito Escuro */
+            --card-bg: #1a1a38; /* Fundo dos Cards/Seções */
+            --header-bg: #15152a; /* Fundo do Cabeçalho */
             --text-color: #f8f8f8; /* Texto Claro */
-            --shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
         }
 
-        /* Estilos Gerais */
+        /* Estilos Gerais (Reutilizados e Ajustados) */
         * {
             margin: 0;
             padding: 0;
@@ -48,11 +47,11 @@
             color: var(--text-color);
         }
 
-        /* Animação Pulse */
-        @keyframes pulse-green {
-            0% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(39, 174, 96, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(39, 174, 96, 0); }
+        /* Animação Pulse (Verde Neon) */
+        @keyframes pulse-neon {
+            0% { box-shadow: 0 0 0 0 rgba(46, 208, 111, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(46, 208, 111, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 208, 111, 0); }
         }
 
         /* Botões */
@@ -68,48 +67,41 @@
             letter-spacing: 1px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             font-size: 1.1em;
+            text-decoration: none; /* Para usar em links */
         }
-
-        /* Botão COMPRAR AGORA (Para os cards) */
-        .btn-buy {
+        
+        .btn-primary {
             background-color: var(--secondary-color);
-            color: var(--light-text);
-            padding: 12px 20px;
-            font-size: 0.9em;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            margin-top: 15px;
+            color: var(--background-color);
+            animation: pulse-neon 2s infinite; 
         }
-        .btn-buy:hover {
-            background-color: #cc2a00;
-            transform: translateY(-1px);
-        }
-
-        /* Botão PAGAR AGORA (Verde Pulsante) */
-        .btn-pay-now {
-            background-color: var(--accent-color);
-            color: var(--light-text);
-            animation: pulse-green 2s infinite; 
-            width: 100%;
-            margin-top: 30px;
-        }
-
-        .btn-pay-now:hover {
-            background-color: #219d54; 
+        .btn-primary:hover {
+            background-color: #25b963;
             transform: translateY(-2px);
             animation: none;
         }
 
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+            padding: 16px 33px; 
+        }
+        .btn-secondary:hover {
+             background-color: rgba(46, 208, 111, 0.1);
+             color: var(--text-color);
+        }
+
+
         /* Header */
         .header {
-            background-color: var(--header-bg); /* NOVO: Azul Escuro */
+            background-color: var(--header-bg);
             box-shadow: var(--shadow);
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 50;
-            border-bottom: 2px solid var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
         }
 
         .header .container {
@@ -118,11 +110,15 @@
             align-items: center;
         }
 
-        /* NOVO ESTILO PARA LOGO MAIOR */
-        .logo img {
-            height: 60px; /* Aumentado o tamanho da logo */
-            width: auto;
-            vertical-align: middle;
+        .logo a {
+            font-size: 1.8em;
+            font-weight: 900;
+            color: var(--secondary-color);
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+        .logo span {
+            color: var(--accent-color);
         }
 
         .nav a {
@@ -134,78 +130,176 @@
         }
 
         .nav a:hover {
-            color: var(--primary-color);
-        }
-
-        /* Seção de Produtos (Shop) */
-        .shop-section {
-            padding: 60px 0;
-            text-align: center;
-        }
-
-        .shop-section h2 {
-            color: var(--primary-color);
-            font-size: 3em;
-            margin-bottom: 20px;
-            font-weight: 900;
+            color: var(--secondary-color);
         }
         
-        .shop-section p {
-            font-size: 1.2em;
-            margin-bottom: 40px;
-            color: #ccc;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-        }
-
-        .product-card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-            padding: 20px;
+        /* NOVO: Estilo para a sessão principal (Hero) */
+        .hero-section {
+            padding: 100px 0 80px 0;
             text-align: center;
-            transition: transform 0.3s;
+            background: radial-gradient(circle at top, #15152a 0%, var(--background-color) 70%);
         }
 
-        .product-card:hover {
-            transform: translateY(-8px);
-            border: 1px solid var(--primary-color);
+        .hero-section h1 {
+            font-size: 4em;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        
+        .hero-section h1 span {
+            color: var(--secondary-color);
+            text-shadow: 0 0 10px rgba(46, 208, 111, 0.7);
         }
 
-        .product-card img {
-            width: 100%;
-            height: auto;
-            max-height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        .hero-section p {
+            font-size: 1.4em;
+            color: #bbb;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
-
-        .product-card h3 {
-            color: var(--text-color);
-            font-size: 1.3em;
+        
+        .hero-section .cta-group {
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* NOVO: Destaques de números/Parceiros */
+        .stats-section {
+            background-color: var(--header-bg);
+            padding: 40px 0;
+            border-top: 2px solid var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            padding: 15px 20px;
+        }
+        
+        .stat-item .number {
+            font-size: 2.5em;
+            font-weight: 900;
+            color: var(--accent-color);
             margin-bottom: 5px;
         }
-
-        .product-card .price {
-            font-size: 1.8em;
-            font-weight: 900;
+        
+        .stat-item .label {
+            font-weight: 600;
+            color: #ccc;
+        }
+        
+        /* NOVO: Seção de Conteúdo */
+        .content-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .content-section h2 {
+            font-size: 2.5em;
             color: var(--accent-color);
             margin-bottom: 10px;
         }
-
-        /* Footer */
-        .footer {
-            background-color: var(--card-bg);
+        
+        .content-section p.subtitle {
+            font-size: 1.2em;
             color: #aaa;
-            padding: 30px 0;
+            margin-bottom: 60px;
+        }
+
+        /* Seção Como Funciona */
+        .how-it-works-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .step-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 300px;
+            text-align: left;
+            border-bottom: 5px solid var(--primary-color);
+            transition: transform 0.3s;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--secondary-color);
+        }
+        
+        .step-card .icon {
+            font-size: 3em;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .step-card h3 {
+            color: var(--text-color);
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .step-card p {
+            color: #ccc;
+        }
+        
+        /* Seção de Integrações */
+        .integrations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .integration-item {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-left: 5px solid var(--accent-color);
+        }
+        
+        .integration-item .icon {
+            font-size: 2em;
+            color: var(--accent-color);
+        }
+        
+        .integration-item h4 {
+            font-size: 1.2em;
+            color: var(--secondary-color);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        
+        .integration-item p {
             font-size: 0.9em;
-            border-top: 1px solid #333;
+            color: #bbb;
+        }
+        
+        /* Footer (Ajustado) */
+        .footer {
+            background-color: var(--header-bg);
+            color: #aaa;
+            padding: 50px 0 20px 0;
+            font-size: 0.9em;
+            border-top: 2px solid var(--primary-color);
         }
         
         .footer .container {
@@ -216,41 +310,54 @@
         }
         
         .footer-col {
-            width: 30%;
-            min-width: 200px;
-            margin-bottom: 15px;
+            width: 22%; /* Mais colunas */
+            min-width: 150px;
+            margin-bottom: 30px;
         }
         
         .footer h4 {
-            color: var(--primary-color);
+            color: var(--secondary-color);
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             font-size: 1em;
+            text-transform: uppercase;
         }
         
         .footer p, .footer a {
             color: #777;
             text-decoration: none;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            transition: color 0.3s;
         }
         
         .footer a:hover {
-            color: var(--primary-color);
+            color: var(--text-color);
+        }
+
+        .footer .contact-info p i {
+            margin-right: 8px;
+            color: var(--accent-color);
         }
 
         .footer-bottom {
             width: 100%;
             border-top: 1px solid #333;
-            padding-top: 15px;
-            margin-top: 15px;
+            padding-top: 20px;
+            margin-top: 20px;
             text-align: center;
             color: #555;
         }
 
+        /* Oculta seção de produtos do código base */
+        .shop-section {
+            display: none !important;
+        }
+
         /* ======================================
-        MODAIS (POP-UPS) - REUTILIZADO
+        MODAIS (Pop-ups de Checkout PIX)
         ======================================
+        (Estilos reutilizados do código original para o checkout PIX)
         */
         .modal {
             display: none; 
@@ -261,18 +368,18 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.9);
         }
 
         .modal-content {
-            background-color: #2a2a2a; /* Fundo Escuro do Modal */
+            background-color: #2a2a2a; 
             margin: 5% auto; 
             padding: 30px 40px;
             border-radius: 15px;
             width: 95%; 
             max-width: 550px; 
             position: relative;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
             color: var(--text-color);
         }
 
@@ -286,197 +393,120 @@
 
         .close-btn:hover,
         .close-btn:focus {
-            color: var(--primary-color);
+            color: var(--secondary-color); /* Ajustado para Neon */
             text-decoration: none;
             cursor: pointer;
         }
-
-        /* Checkout (Endereço) */
+        
+        /* Estilos do Checkout */
         .checkout-header {
             border-bottom: 3px solid var(--secondary-color);
             padding-bottom: 15px;
             margin-bottom: 20px;
         }
 
-        .checkout-header h3 {
-            color: var(--text-color);
-            font-weight: 900;
-        }
-
         .checkout-summary {
             background-color: #333; 
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             border-left: 5px solid var(--primary-color);
         }
 
-        .checkout-summary strong {
-            font-size: 1.1em;
-            color: var(--primary-color);
-            font-weight: 700;
-        }
         .checkout-summary .price {
-            font-size: 2.2em;
-            font-weight: 900;
-            color: var(--secondary-color);
-        }
-        
-        #address-form label {
-            display: block;
-            margin-top: 10px;
-            font-weight: 700;
-            font-size: 0.9em;
-            color: #ccc;
+            color: var(--secondary-color); /* Ajustado para Neon */
         }
 
         #address-form input, #address-form select {
-            width: 100%;
-            padding: 12px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #444;
-            border-radius: 8px;
             background-color: #1c1c1c;
-            color: var(--text-color);
-            transition: border-color 0.3s;
+            border: 1px solid #444;
         }
         #address-form input:focus, #address-form select:focus {
-            border-color: var(--primary-color);
-            outline: none;
-        }
-        
-        /* Ocultar o select de produto no checkout, pois é fixo por produto */
-        #product-select-group {
-            display: none;
+            border-color: var(--secondary-color);
         }
 
-        /* Estilo elegante para a opção de pagamento PIX */
         .payment-option-pix {
             background-color: #3c3c3c; 
             border: 1px solid #555;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            text-align: center;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            color: var(--accent-color);
-        }
-        .payment-option-pix img {
-            height: 25px;
-            width: auto;
-        }
-
-
-        /* Info PIX Modal (Pagamento) */
-        .pix-modal-content {
-            text-align: center;
-        }
-
-        .pix-modal-content h3 {
-            color: var(--accent-color);
-            font-size: 2em;
-        }
-
-        .countdown-timer {
-            background-color: #333;
-            color: var(--text-color);
-            padding: 10px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-size: 1.6em;
-            font-weight: 700;
-        }
-        .countdown-timer i {
-            margin-right: 10px;
             color: var(--secondary-color);
         }
 
-        .pix-details {
-            border: 2px solid var(--accent-color);
-            padding: 25px;
-            border-radius: 12px;
-            background-color: #1c1c1c;
-            margin-bottom: 20px;
+        .btn-pay-now {
+            background-color: var(--secondary-color); /* Utiliza o Verde Neon */
+            animation: pulse-neon 2s infinite; 
         }
 
-        .pix-details .pix-icon {
-            width: 100px;
-            margin-bottom: 20px;
+        .btn-pay-now:hover {
+            background-color: #219d54; 
+            transform: translateY(-2px);
+            animation: none;
         }
 
-        .pix-key-group {
-            background-color: #2c2c2c;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 15px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* Estilos do Modal PIX */
+        .pix-modal-content h3 {
+            color: var(--secondary-color);
         }
-        .pix-key-group span {
-            font-weight: 700;
+
+        .countdown-timer {
+            color: var(--text-color);
+        }
+        .countdown-timer i {
             color: var(--accent-color);
-            font-size: 1.1em;
         }
+
+        .pix-details {
+            border: 2px solid var(--secondary-color);
+            background-color: #1c1c1c;
+        }
+
+        .pix-key-group span {
+            color: var(--secondary-color);
+        }
+
         .copy-btn {
             background-color: var(--primary-color);
-            color: var(--light-text);
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9em;
-            font-weight: 600;
-            transition: background-color 0.3s;
+            color: var(--text-color);
         }
         
         .copy-btn:hover {
-            background-color: #005bb5;
-        }
-
-        .titular-info {
-            font-size: 0.9em;
-            color: #aaa;
-            margin-top: 10px;
+            background-color: #4a1888;
         }
 
         .strong-name {
-            font-weight: 900 !important; 
-            color: var(--secondary-color); 
+            color: var(--accent-color); 
         }
         
         .pending-message {
-            text-align: center;
-            padding: 15px;
-            background-color: #333; 
             color: var(--warning-color);
             border: 1px solid var(--warning-color);
-            border-radius: 5px;
-            margin-bottom: 20px;
-            font-weight: 600;
-            display: none; 
         }
+        
+        #close-pix-btn {
+            background-color: var(--primary-color) !important;
+        }
+
 
         /* Responsividade */
         @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            .hero-section h1 {
+                font-size: 3em;
+            }
+            .hero-section p {
+                font-size: 1.1em;
             }
              .footer-col {
-                width: 100%;
-                min-width: 100%;
-                text-align: center;
+                width: 45%;
+                min-width: 100px;
             }
-            .footer .container {
-                justify-content: center;
+             .footer .container {
+                justify-content: space-around;
+            }
+            .stats-grid {
+                flex-direction: column;
+            }
+            .stat-item {
+                border-bottom: 1px solid #333;
+                width: 100%;
+            }
+            .stat-item:last-child {
+                border-bottom: none;
             }
         }
     </style>
@@ -486,48 +516,183 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="https://i.ibb.co/39SP0b4M/ggf.png" alt="PSN Gift Cards Logo">
+                <a href="#">LIVE<span class="accent-color">PIX</span></a> 
             </div>
             <nav class="nav">
-                <a href="#shop" class="nav-item">Loja</a>
-                <a href="#" class="nav-item">Ajuda</a>
+                <a href="#how-it-works" class="nav-item">Como Funciona</a>
+                <a href="#features" class="nav-item">Recursos</a>
+                <a href="#faq" class="nav-item">Ajuda</a>
+                <a href="#" class="nav-item btn btn-secondary" style="margin-left: 50px;">Entrar</a>
             </nav>
         </div>
     </header>
 
-    <section class="shop-section" style="padding-top: 100px;">
+    <section class="hero-section">
         <div class="container">
-            <h2>RECARREGUE SUA PSN!</h2>
-            <p>Os melhores preços em Gift Cards para comprar jogos, DLCs e assinaturas na PlayStation Store.</p>
+            <h1>
+                Monetize. <span>Engaje.</span> Cresça.
+            </h1>
+            <p>
+                Mais engajamento, mais receita, mais liberdade para criar.
+                Receba doações, gerencie assinaturas e recompense seus apoiadores de forma simples e segura.
+            </p>
+            <div class="cta-group">
+                <a href="#" class="btn btn-primary">
+                    Criar Minha Conta Grátis <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </section>
 
-    <section id="shop" class="shop-section" style="padding-top: 0;">
+    <section class="stats-section">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <div class="number">+200 mil</div>
+                <div class="label">Mensagens Recebidas</div>
+            </div>
+             <div class="stat-item">
+                <div class="number">+12 milhões</div>
+                <div class="label">Valor Transacionado</div>
+            </div>
+             <div class="stat-item">
+                <div class="number">+140 milhões</div>
+                <div class="label">Pessoas Alcançadas</div>
+            </div>
+        </div>
+        <div class="container" style="text-align: center; margin-top: 30px;">
+            <p style="font-size: 1.1em; font-weight: 700; color: var(--accent-color);">
+                Faça parte desta comunidade. Junte-se aos milhares de criadores!
+            </p>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="content-section">
         <div class="container">
-            <div class="products-grid" id="products-container">
+            <h2>Como Funciona</h2>
+            <p class="subtitle">Configuração simples, resultados imediatos. Receba PIX em sua live em minutos.</p>
+            
+            <div class="how-it-works-grid">
+                <div class="step-card">
+                    <div class="icon"><i class="fas fa-cog"></i></div>
+                    <h3>1. Configuração</h3>
+                    <p>Configure os widgets de alerta em seu software de transmissão ou use uma integração nativa.</p>
                 </div>
+                <div class="step-card">
+                    <div class="icon"><i class="fas fa-bell"></i></div>
+                    <h3>2. Pagamento/Alerta</h3>
+                    <p>Seus espectadores enviam pagamentos com mensagem e são exibidos em sua transmissão em tempo real.</p>
+                </div>
+                <div class="step-card">
+                    <div class="icon"><i class="fas fa-wallet"></i></div>
+                    <h3>3. Carteira/Saque</h3>
+                    <p>O dinheiro fica disponível na hora e você saca os valores a partir de R$ 1,00 via Pix 24/7.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="content-section" style="background-color: var(--card-bg);">
+        <div class="container">
+            <h2>Integrações e Recursos</h2>
+            <p class="subtitle">Receba os alertas e maximize sua receita com as ferramentas que você já usa.</p>
+            
+            <div class="integrations-grid">
+                <div class="integration-item">
+                    <div class="icon"><i class="fas fa-external-link-alt"></i></div>
+                    <div>
+                        <h4>StreamElements & StreamLabs</h4>
+                        <p>Conecte suas contas para receber os alertas em seu software de transmissão preferido.</p>
+                    </div>
+                </div>
+                
+                <div class="integration-item">
+                    <div class="icon"><i class="fas fa-comment-dots"></i></div>
+                    <div>
+                        <h4>Mensagens & Alertas</h4>
+                        <p>Receba mensagens via Pix ou Cartão de Crédito e exiba alertas na sua live com Text-to-Speech.</p>
+                    </div>
+                </div>
+                
+                <div class="integration-item">
+                    <div class="icon"><i class="fas fa-star"></i></div>
+                    <div>
+                        <h4>Assinaturas Recorrentes</h4>
+                        <p>Receba assinaturas mensais via Pix ou Cartão de Crédito e conquiste uma renda recorrente.</p>
+                    </div>
+                </div>
+
+                <div class="integration-item">
+                    <div class="icon"><i class="fas fa-coins"></i></div>
+                    <div>
+                        <h4>Criptomoedas</h4>
+                        <p>Conecte sua carteira e receba alertas de pagamentos por criptomoedas via Smart Contract.</p>
+                    </div>
+                </div>
+                
+                <div class="integration-item">
+                    <div class="icon"><i class="fas fa-trophy"></i></div>
+                    <div>
+                        <h4>Recompensas Exclusivas</h4>
+                        <p>Recompense seus apoiadores com acesso a grupos e conteúdo exclusivo de forma automatizada.</p>
+                    </div>
+                </div>
+                
+                <div class="integration-item">
+                    <div class="icon"><i class="fas fa-bullhorn"></i></div>
+                    <div>
+                        <h4>Campanhas Personalizadas</h4>
+                        <p>Crie metas de doação e campanhas interativas para aumentar o engajamento da sua audiência.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="content-section">
+        <div class="container">
+            <h2>Perguntas Frequentes</h2>
+            <p class="subtitle">Encontre as respostas para suas dúvidas mais comuns.</p>
+            <a href="#" class="btn btn-primary">
+                Acessar Central de Ajuda <i class="fas fa-question-circle"></i>
+            </a>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
             <div class="footer-col">
-                <h4>Atendimento</h4>
-                <p>24/7 - Entrega Imediata (Código Digital)</p>
-                <p>Rua Fritz Muller, 50 SL 503 - Coqueiros Florianópolis/SC</p>
+                <h4>LivePix LTDA</h4>
+                <p>CNPJ 43.192.126/0001-18</p>
+                <p>R. Dr. Alfredo de Castro, 200 - Sala 1401</p>
+                <p>Barra Funda - São Paulo - SP</p>
             </div>
-            <div class="footer-col">
+            
+            <div class="footer-col contact-info">
                 <h4>Fale Conosco</h4>
-                <p><i class="fas fa-phone-alt"></i> (85) 99212-9136</p>
-                <p><i class="fas fa-envelope"></i> contato@gcmgamess.com.br</p>
+                <p><i class="fas fa-envelope"></i> ajuda@livepix.gg (Suporte)</p>
+                <p><i class="fas fa-briefcase"></i> comercial@livepix.gg (Comercial)</p>
             </div>
+            
             <div class="footer-col">
-                <h4>Informações</h4>
-                <p>CNPJ: 19.388.710/0001-69</p>
-                <a href="#">Termos de Compra</a>
+                <h4>Para seu Canal</h4>
+                <a href="#">Assinaturas</a>
+                <a href="#">Recompensas</a>
+                <a href="#">Campanhas</a>
             </div>
+
+            <div class="footer-col">
+                <h4>Institucional</h4>
+                <a href="#">Central de Ajuda</a>
+                <a href="#">Termos e Condições de Uso</a>
+                <a href="#">Políticas de Privacidade</a>
+                <a href="#">Segurança</a>
+            </div>
+
             <div class="footer-bottom">
-                <p>&copy; 2025 PSN Gift Cards. Todos os direitos reservados. Não afiliado à Sony Interactive Entertainment.</p>
+                <p>&copy; 2025 LivePix LTDA. Todos os direitos reservados. 
+                    <a href="#" style="display: inline; color: #555;">Segurança</a> | 
+                    <a href="#" style="display: inline; color: #555;">Termos</a>
+                </p>
             </div>
         </div>
     </footer>
@@ -537,15 +702,15 @@
         <div class="modal-content">
             <span class="close-btn">&times;</span>
             <div class="checkout-header">
-                <h3><i class="fas fa-credit-card"></i> Finalize Sua Compra Digital</h3>
+                <h3><i class="fas fa-credit-card"></i> Simulação de Pagamento (PIX)</h3>
             </div>
             
             <div class="checkout-summary">
                 <div>
-                    <strong>Produto:</strong> <span id="product-name-display">PSN Card R$ 50</span><br>
-                    <span>Código Enviado por E-mail</span>
+                    <strong>Produto:</strong> <span id="product-name-display">Doação Teste</span><br>
+                    <span>Valor Fixo para Demonstração</span>
                 </div>
-                <div class="price" id="display-price">R$ 50,00</div>
+                <div class="price" id="display-price">R$ 5,00</div>
             </div>
 
             <form id="address-form">
@@ -553,7 +718,7 @@
                 <div id="product-select-group">
                     <label for="product-select">Produto Selecionado</label>
                     <select id="product-select" required>
-                        <option value="50.00">PSN Card R$ 50</option>
+                        <option value="5.00" selected>Doação Teste</option>
                     </select>
                 </div>
                 
@@ -563,10 +728,10 @@
                 <label for="telefone">Telefone (Para Contato)</label>
                 <input type="tel" id="telefone" placeholder="(95) 99999-9999" required>
 
-                <label for="email">Email para Envio do Código</label>
+                <label for="email">Email para Confirmação</label>
                 <input type="email" id="email" placeholder="seuemail@exemplo.com" required>
 
-                <label for="cep">CEP <span style="font-size: 0.8em; color: var(--primary-color);">(Apenas para registro/segurança)</span></label>
+                <label for="cep">CEP <span style="font-size: 0.8em; color: var(--accent-color);">(Apenas para registro/segurança)</span></label>
                 <input type="text" id="cep" pattern="\d{8}" placeholder="Ex: 69301000 (apenas números)" required maxlength="8">
 
                 <div class="payment-option-pix">
@@ -584,7 +749,7 @@
         <div class="modal-content pix-modal-content">
             <span class="close-btn">&times;</span>
             <h3><i class="fas fa-check-circle"></i> Pagamento PIX Gerado!</h3>
-            <p>Seu código será enviado assim que o pagamento for confirmado.</p>
+            <p>Conclua o pagamento em seu app bancário para finalizar.</p>
             
             <div class="countdown-timer">
                 <i class="fas fa-hourglass-half"></i> Tempo restante: <span id="countdown">10:00</span>
@@ -593,8 +758,8 @@
             <div class="pix-details">
                 <img src="https://www.advocacianunes.com.br/wp-content/uploads/2022/04/logo-pix-icone-1024.png" alt="Ícone PIX" class="pix-icon">
                 
-                <p><strong>VALOR A PAGAR:</strong> <span style="font-size: 1.8em; color: var(--secondary-color);" id="pix-value-display">R$ 50,00</span></p>
-                <p><strong>Tipo de Chave:</strong> CPF</p>
+                <p><strong>VALOR A PAGAR:</strong> <span style="font-size: 1.8em; color: var(--secondary-color);" id="pix-value-display">R$ 5,00</span></p>
+                <p><strong>Tipo de Chave:</strong> CPF (Aleatório)</p>
                 
                 <div class="pix-key-group">
                     <span id="pix-key-display">081.904.013-43</span> 
@@ -607,7 +772,7 @@
             </div>
 
             <div class="pending-message">
-                ⚠️ **Pedido Registrado!** O pagamento está **PENDENTE**. Seu código será enviado por email **SOMENTE APÓS** a confirmação do PIX.
+                ⚠️ **Pedido Registrado!** O pagamento está **PENDENTE**. Seu status será atualizado **SOMENTE APÓS** a confirmação do PIX.
             </div>
 
             <button id="close-pix-btn" class="btn" style="background-color: var(--primary-color);">
@@ -619,20 +784,9 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const productData = [
-                { value: 15.00, price: 15.00, name: "PSN Card R$ 15" },
-                { value: 30.00, price: 30.00, name: "PSN Card R$ 30" },
-                { value: 50.00, price: 50.00, name: "PSN Card R$ 50" },
-                { value: 60.00, price: 60.00, name: "PSN Card R$ 60" },
-                { value: 100.00, price: 98.00, name: "PSN Card R$ 100" }, // Desconto
-                { value: 120.00, price: 118.00, name: "PSN Card R$ 120" }, // Desconto
-                { value: 150.00, price: 145.00, name: "PSN Card R$ 150" }, // Desconto
-                { value: 200.00, price: 195.00, name: "PSN Card R$ 200" }, // Desconto
-                { value: 250.00, price: 240.00, name: "PSN Card R$ 250" }, // Desconto
-                { value: 300.00, price: 290.00, name: "PSN Card R$ 300" }  // Desconto
-            ];
-
-            const productsContainer = document.getElementById('products-container');
+            // ** ATENÇÃO: productData e a lógica de geração de cards foi removida/simplificada **
+            // O objetivo é manter apenas a funcionalidade dos modais para demonstração.
+            
             const addressModal = document.getElementById('address-modal');
             const pixModal = document.getElementById('pix-modal');
             const addressForm = document.getElementById('address-form');
@@ -647,54 +801,25 @@
             const productNameDisplay = document.getElementById('product-name-display');
             const productSelect = document.getElementById('product-select');
             
-            let currentProduct = {};
+            let currentProduct = { price: 5.00, name: "Doação Teste" }; // Produto Fixo para Demo
             let countdownInterval;
 
             // Função para formatar o preço
             const formatPrice = (price) => {
                 return `R$ ${parseFloat(price).toFixed(2).replace('.', ',')}`;
             };
-
-            // 1. Geração Dinâmica dos Cards
-            productData.forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                card.innerHTML = `
-                    <img src="https://cdn.awsli.com.br/2500x2500/2430/2430819/produto/234443245/psn-530-6hzaxry7ix.jpg" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p class="price">${formatPrice(product.price)}</p>
-                    <button class="btn-buy" data-value="${product.value}" data-price="${product.price}" data-name="${product.name}">
-                        COMPRAR AGORA <i class="fas fa-gamepad"></i>
-                    </button>
-                `;
-                productsContainer.appendChild(card);
+            
+            // Simulação de clique no CTA principal para abrir o checkout (opcional, para testar o modal)
+            document.querySelector('.hero-section .btn-primary').addEventListener('click', function(event) {
+                event.preventDefault();
+                // Apenas abre o modal de endereço com o produto fixo de "Doação Teste R$ 5,00"
+                displayPrice.textContent = formatPrice(currentProduct.price);
+                productNameDisplay.textContent = currentProduct.name;
+                addressModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
             });
-
-            // 2. Ação de Compra (Abre o Checkout)
-            productsContainer.addEventListener('click', function(event) {
-                if (event.target.classList.contains('btn-buy')) {
-                    const btn = event.target;
-                    
-                    currentProduct = {
-                        value: parseFloat(btn.dataset.value),
-                        price: parseFloat(btn.dataset.price),
-                        name: btn.dataset.name
-                    };
-
-                    // Atualiza o display do modal de checkout
-                    displayPrice.textContent = formatPrice(currentProduct.price);
-                    productNameDisplay.textContent = currentProduct.name;
-                    
-                    // Atualiza o valor do select (necessário para o JS do checkout)
-                    productSelect.innerHTML = `<option value="${currentProduct.price}" selected>${currentProduct.name}</option>`;
-                    
-                    addressModal.style.display = 'block';
-                    document.body.style.overflow = 'hidden';
-                }
-            });
-
-
-            // 3. Fechar Modais (Geral)
+            
+            // 2. Fechar Modais (Geral)
             const closeModals = () => {
                 addressModal.style.display = 'none';
                 pixModal.style.display = 'none';
@@ -714,11 +839,11 @@
             });
 
 
-            // 4. Submissão do Formulário de Endereço -> Abre PIX
+            // 3. Submissão do Formulário de Endereço -> Abre PIX
             addressForm.addEventListener('submit', function(event) {
                 event.preventDefault();
 
-                // Atualiza o display do PIX com o preço correto
+                // Atualiza o display do PIX com o preço correto (R$ 5,00 fixo)
                 pixValueDisplay.textContent = formatPrice(currentProduct.price);
 
                 addressModal.style.display = 'none';
@@ -729,7 +854,7 @@
                 startCountdown(10 * 60); // 10 minutos
             });
             
-            // 5. Contagem Regressiva para PIX
+            // 4. Contagem Regressiva para PIX
             function startCountdown(duration) {
                 let timer = duration;
                 let minutes, seconds;
@@ -756,7 +881,7 @@
                 }, 1000);
             }
 
-            // 6. Lógica de Cópia da Chave PIX
+            // 5. Lógica de Cópia da Chave PIX
             copyBtn.addEventListener('click', function() {
                 const pixKey = copyBtn.getAttribute('data-copy');
                 
@@ -776,16 +901,14 @@
                 });
             });
 
-            // 7. Simulação de Preenchimento por CEP (Apenas para evitar erro de campo faltante)
+            // 6. Simulação de Preenchimento por CEP (Apenas para evitar erro de campo faltante)
             cepInput.addEventListener('input', function() {
                 let cep = this.value.replace(/\D/g, ''); 
                 this.value = cep;
             });
             
-            // Corrige o preenchimento inicial dos selects do checkout (que foram ocultados)
-            productSelect.innerHTML = `<option value="50.00" selected>PSN Card R$ 50</option>`;
-            currentProduct = { price: 50.00, name: "PSN Card R$ 50" };
-
+            // Inicializa displays do modal com o produto fixo
+            productSelect.innerHTML = `<option value="${currentProduct.price}" selected>${currentProduct.name}</option>`;
         });
     </script>
 </body>
